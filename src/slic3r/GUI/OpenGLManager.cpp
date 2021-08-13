@@ -236,7 +236,7 @@ bool OpenGLManager::init_gl()
     if (!m_gl_initialized) {
         if (glewInit() != GLEW_OK) {
             BOOST_LOG_TRIVIAL(error) << "Unable to init glew library";
-            return false;
+            //return false;
         }
         m_gl_initialized = true;
         if (GLEW_EXT_texture_compression_s3tc)

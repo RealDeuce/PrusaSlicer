@@ -1,7 +1,7 @@
 set(_wx_git_tag v3.1.4-patched)
 
 set(_wx_toolkit "")
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     set(_gtk_ver 2)
     if (DEP_WX_GTK3)
         set(_gtk_ver 3)

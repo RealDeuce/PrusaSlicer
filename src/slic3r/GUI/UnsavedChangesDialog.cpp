@@ -29,7 +29,7 @@
 
 using boost::optional;
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
 #define wxLinux true
 #else
 #define wxLinux false
@@ -109,7 +109,7 @@ ModelNode::ModelNode(ModelNode* parent, const wxString& text) :
     UpdateIcons();
 }
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
 wxIcon ModelNode::get_bitmap(const wxString& color)
 #else
 wxBitmap ModelNode::get_bitmap(const wxString& color)
@@ -127,7 +127,7 @@ wxBitmap ModelNode::get_bitmap(const wxString& color)
     unsigned char rgb[3];
     BitmapCache::parse_color(into_u8(color), rgb);
     // there is no need to scale created solid bitmap
-#ifndef __linux__
+#if !(defined(__linux__) || defined(__FreeBSD__))
     return bmp_cache.mksolid(icon_width, icon_height, rgb, true);
 #else
     wxIcon icon;
@@ -210,7 +210,7 @@ void ModelNode::UpdateIcons()
     if (m_icon_name.empty())
         return;
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
     m_icon.CopyFromBitmap(create_scaled_bitmap(m_icon_name, m_parent_win, 16, !m_toggle));
 #else
     m_icon = create_scaled_bitmap(m_icon_name, m_parent_win, 16, !m_toggle);
@@ -361,7 +361,7 @@ void DiffModel::GetValue(wxVariant& variant, const wxDataViewItem& item, unsigne
     case colToggle:
         variant = node->m_toggle;
         break;
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
     case colIconText:
         variant << wxDataViewIconText(node->m_text, node->m_icon);
         break;
@@ -398,7 +398,7 @@ bool DiffModel::SetValue(const wxVariant& variant, const wxDataViewItem& item, u
     case colToggle:
         node->m_toggle = variant.GetBool();
         return true;
-#ifdef __linux__
+#if defined(__linux___) || defined(__FreeBSD__)
     case colIconText: {
         wxDataViewIconText data;
         data << variant;

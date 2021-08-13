@@ -4391,7 +4391,7 @@ void Plater::priv::on_right_click(RBtnEvent& evt)
     }
 
     if (q != nullptr && menu) {
-#ifdef __linux__
+#if defined(__linux__)
         // For some reason on Linux the menu isn't displayed if position is specified
         // (even though the position is sane).
         q->PopupMenu(menu);

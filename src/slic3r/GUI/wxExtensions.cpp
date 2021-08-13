@@ -21,7 +21,7 @@
 #include "../Utils/MacDarkMode.hpp"
 #include "BitmapComboBox.hpp"
 
-#ifndef __linux__
+#if !(defined(__linux__) || defined(__FreeBSD__))
 // msw_menuitem_bitmaps is used for MSW and OSX
 static std::map<int, std::string> msw_menuitem_bitmaps;
 #ifdef __WXMSW__
