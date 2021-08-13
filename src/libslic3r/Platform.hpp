@@ -28,6 +28,7 @@ enum class PlatformFlavor
 	WSL2,
 	// For Platform::BSDUnix
 	OpenBSD,
+	FreeBSD,
 };
 
 // To be called on program start-up.

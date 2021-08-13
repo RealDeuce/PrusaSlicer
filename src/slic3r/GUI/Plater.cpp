@@ -4067,7 +4067,7 @@ void Plater::priv::on_right_click(RBtnEvent& evt)
     }
 
     if (q != nullptr && menu) {
-#ifdef __linux__
+#if defined(__linux__)
         // For some reason on Linux the menu isn't displayed if position is specified
         // (even though the position is sane).
         q->PopupMenu(menu);
@@ -6209,7 +6209,7 @@ void Plater::on_activate()
 {
     // Activating the main frame, and no window has keyboard focus.
     // Set the keyboard focus to the visible Canvas3D.
-#if defined(__linux__)
+#if defined(__linux__) || defined(__FreeBSD__)
     if (this->p->view3D->IsShown() && wxWindow::FindFocus() != this->p->view3D->get_wxglcanvas())
         this->p->view3D->get_wxglcanvas()->SetFocus();
     else if (this->p->preview->IsShown() && wxWindow::FindFocus() != this->p->view3D->get_wxglcanvas())

@@ -719,7 +719,7 @@ wxGLContext* GUI_App::init_glcontext(wxGLCanvas& canvas)
 
 bool GUI_App::init_opengl()
 {
-#ifdef __linux__
+#if defined(__linux__)
     bool status = m_opengl_mgr.init_gl();
     m_opengl_initialized = true;
     return status;
@@ -755,7 +755,7 @@ void GUI_App::init_app_config()
         if (boost::filesystem::exists(boost::filesystem::path{ resources_dir() } / ".." / "configuration")) {
             set_data_dir((boost::filesystem::path{ resources_dir() } / ".." / "configuration").string());
         } else {
-#ifndef __linux__
+#if !(defined(__linux__) || defined(__FreeBSD__))
             set_data_dir(wxStandardPaths::Get().GetUserDataDir().ToUTF8().data());
 #else
             // Since version 2.3, config dir on Linux is in ${XDG_CONFIG_HOME}.
@@ -902,7 +902,7 @@ bool GUI_App::on_init_inner()
         // create splash screen with updated bmp
         scrn = new SplashScreen(bmp.IsOk() ? bmp : create_scaled_bitmap( SLIC3R_APP_KEY "_logo", nullptr, 400), 
                                 wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 4000, splashscreen_pos, artist);
-#ifndef __linux__
+#if !(defined(__linux__) || defined(__FreeBSD))
         wxYield();
 #endif
         scrn->SetText(_L("Loading configuration")+ dots);
@@ -1024,7 +1024,7 @@ bool GUI_App::on_init_inner()
 
         // An ugly solution to GH #5537 in which GUI_App::init_opengl (normally called from events wxEVT_PAINT
         // and wxEVT_SET_FOCUS before GUI_App::post_init is called) wasn't called before GUI_App::post_init and OpenGL wasn't initialized.
-#ifdef __linux__
+#if defined(__linux__)
         if (update_gui_after_init && m_opengl_initialized) {
 #else
         if (update_gui_after_init) {
@@ -1460,7 +1460,7 @@ bool GUI_App::switch_language()
     }
 }
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
 static const wxLanguageInfo* linux_get_existing_locale_language(const wxLanguageInfo* language,
                                                                 const wxLanguageInfo* system_language)
 {
@@ -1633,7 +1633,7 @@ bool GUI_App::load_language(wxString language, bool initial)
 				m_language_info_best = wxLocale::FindLanguageInfo(best_language);
 	        	BOOST_LOG_TRIVIAL(trace) << boost::format("Best translation language detected (may be different from user locales): %1%") % m_language_info_best->CanonicalName.ToUTF8().data();
 			}
-            #ifdef __linux__
+            #if defined(__linux__) || defined(__FreeBSD__)
             wxString lc_all;
             if (wxGetEnv("LC_ALL", &lc_all) && ! lc_all.IsEmpty()) {
                 // Best language returned by wxWidgets on Linux apparently does not respect LC_ALL.
@@ -1686,7 +1686,7 @@ bool GUI_App::load_language(wxString language, bool initial)
     } else if (m_language_info_system != nullptr && language_info->CanonicalName.BeforeFirst('_') == m_language_info_system->CanonicalName.BeforeFirst('_'))
         language_info = m_language_info_system;
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
     // If we can't find this locale , try to use different one for the language
     // instead of just reporting that it is impossible to switch.
     if (! wxLocale::IsAvailable(language_info->Language)) {

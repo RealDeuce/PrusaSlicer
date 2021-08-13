@@ -167,7 +167,7 @@ if(NOT TBB_FOUND)
     else()
       set(TBB_LIB_PATH_SUFFIX "lib")
     endif()
-  elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     # Linux
     set(TBB_DEFAULT_SEARCH_DIR "/opt/intel/tbb")
     
