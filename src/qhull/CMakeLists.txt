@@ -14,7 +14,7 @@ find_package(Qhull 7.2 QUIET)
 
 add_library(qhull INTERFACE)
 
-if(Qhull_FOUND)
+if(Qhull_FOUND AND NOT CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
 
 message(STATUS "Using qhull from system.")
 if(SLIC3R_STATIC)

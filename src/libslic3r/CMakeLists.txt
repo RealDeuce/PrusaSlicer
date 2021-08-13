@@ -358,7 +358,6 @@ target_include_directories(libslic3r PUBLIC ${EXPAT_INCLUDE_DIRS})
 target_link_libraries(libslic3r
     libnest2d
     admesh
-    cereal
     libigl
     miniz
     boost_libs
