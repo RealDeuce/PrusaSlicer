@@ -404,7 +404,7 @@ void Preview::load_print(bool keep_z_range)
 
 void Preview::reload_print(bool keep_volumes)
 {
-#ifdef __linux__
+#if defined(__linux__)
     // We are getting mysterious crashes on Linux in gtk due to OpenGL context activation GH #1874 #1955.
     // So we are applying a workaround here: a delayed release of OpenGL vertex buffers.
     if (!IsShown())
@@ -414,7 +414,7 @@ void Preview::reload_print(bool keep_volumes)
     }
 #endif /* __linux__ */
     if (
-#ifdef __linux__
+#if defined(__linux__)
         m_volumes_cleanup_required || 
 #endif /* __linux__ */
         (!keep_volumes && m_canvas->is_preview_dirty()))
@@ -422,7 +422,7 @@ void Preview::reload_print(bool keep_volumes)
         m_canvas->set_preview_dirty();
         m_canvas->reset_volumes();
         m_loaded = false;
-#ifdef __linux__
+#if defined(__linux__)
         m_volumes_cleanup_required = false;
 #endif /* __linux__ */
     }

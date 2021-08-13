@@ -20,7 +20,7 @@
 #include "Plater.hpp"
 #include "../Utils/MacDarkMode.hpp"
 
-#ifndef __linux__
+#if !(defined(__linux__) || defined(__FreeBSD__))
 // msw_menuitem_bitmaps is used for MSW and OSX
 static std::map<int, std::string> msw_menuitem_bitmaps;
 #ifdef __WXMSW__
@@ -682,9 +682,9 @@ void ModeButton::focus_button(const bool focus)
 
     SetFont(new_font);
     SetForegroundColour(wxSystemSettings::GetColour(focus ? wxSYS_COLOUR_BTNTEXT : 
-#if defined (__linux__) && defined (__WXGTK3__)
+#if (defined (__linux__) || defined(__FreeBSD__)) && defined (__WXGTK3__)
         wxSYS_COLOUR_GRAYTEXT
-#elif defined (__linux__) && defined (__WXGTK2__)
+#elif (defined (__linux__) || defined(__FreeBSD__)) && defined (__WXGTK2__)
         wxSYS_COLOUR_BTNTEXT
 #else 
         wxSYS_COLOUR_BTNSHADOW

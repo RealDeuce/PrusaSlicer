@@ -259,9 +259,9 @@ target_compile_definitions(libslic3r_gui PRIVATE $<$<BOOL:${SLIC3R_ALPHA}>:SLIC3
 
 encoding_check(libslic3r_gui)
 
-target_link_libraries(libslic3r_gui libslic3r avrdude cereal imgui GLEW::GLEW OpenGL::GL OpenGL::GLU hidapi exif libcurl ${wxWidgets_LIBRARIES})
+target_link_libraries(libslic3r_gui libslic3r avrdude imgui GLEW::GLEW OpenGL::GL OpenGL::GLU hidapi exif libcurl ${wxWidgets_LIBRARIES})
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     target_link_libraries(libslic3r_gui ${DBUS_LIBRARIES}) 
 endif()
 

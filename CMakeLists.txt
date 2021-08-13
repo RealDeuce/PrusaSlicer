@@ -171,7 +171,7 @@ if (APPLE)
     endif ()
 endif ()
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     find_package(PkgConfig REQUIRED)
 
     if (CMAKE_VERSION VERSION_LESS "3.1")
@@ -373,7 +373,7 @@ if (SLIC3R_STATIC)
         # On other systems, libcurl is linked statically if SLIC3R_STATIC is set.
         target_compile_definitions(libcurl INTERFACE CURL_STATICLIB)
     endif()
-    if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
         # As of now, our build system produces a statically linked libcurl,
         # which links the OpenSSL library dynamically.
         find_package(OpenSSL REQUIRED)

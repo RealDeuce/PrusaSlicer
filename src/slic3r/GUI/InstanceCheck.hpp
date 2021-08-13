@@ -11,7 +11,7 @@
 
 #include <boost/filesystem.hpp>
 
-#if __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
 #include <boost/thread.hpp>
 #include <condition_variable>
 #endif // __linux__
@@ -35,7 +35,7 @@ namespace GUI {
 
 class MainFrame;
 
-#if __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
     #define BACKGROUND_MESSAGE_LISTENER
 #endif // __linux__
 

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.6)
 
 add_library(miniz INTERFACE)
 
-if(NOT SLIC3R_STATIC OR CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if(NOT SLIC3R_STATIC OR CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     find_package(miniz 2.1 QUIET)
 endif() 
 

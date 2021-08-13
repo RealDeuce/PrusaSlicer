@@ -103,7 +103,6 @@ void PreferencesDialog::build()
 	m_optgroups_general.clear();
 	m_optgroups_general.emplace_back(create_options_tab(_L("General"), tabs));
 
-
 	bool is_editor = wxGetApp().is_editor();
 
 	ConfigOptionDef def;
