@@ -35,7 +35,7 @@ set(DESTDIR "${CMAKE_CURRENT_BINARY_DIR}/destdir" CACHE PATH "Destination direct
 
 option(DEP_DEBUG "Build debug variants (only applicable on Windows)" ON)
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     option(DEP_WX_GTK3 "Build wxWidgets against GTK3" OFF)
 endif()
 

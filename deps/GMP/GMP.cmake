@@ -26,7 +26,7 @@ else ()
         endif()
         set(_gmp_ccflags "${_gmp_ccflags} -mmacosx-version-min=${DEP_OSX_TARGET}")
         set(_gmp_build_tgt "--build=${_gmp_build_tgt}-apple-darwin")
-    elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
         if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm")
             set(_gmp_ccflags "${_gmp_ccflags} -march=armv7-a") # Works on RPi-4
             set(_gmp_build_tgt armv7)

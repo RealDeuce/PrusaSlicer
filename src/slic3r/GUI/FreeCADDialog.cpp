@@ -856,6 +856,9 @@ bool FreeCADDialog::init_start_python() {
 #ifdef __linux__
         pythonpath = pythonpath / "python";
 #endif
+#ifdef __FreeBSD__
+        pythonpath = pythonpath / "python";
+#endif
     }
     if (!exists(pythonpath)) {
         m_errors->AppendText("Error, cannot find the freecad (version 0.19 or higher) python at '" + pythonpath.string() + "', please update your freecad python path in the preferences.");
@@ -902,6 +905,10 @@ bool FreeCADDialog::init_start_python() {
 #endif
 #ifdef __linux__
     exec_var->pyin << "set_font_dir([\"/usr/share/fonts/\",\"~/.fonts/\"])" << std::endl;
+    // also add 
+#endif
+#ifdef __FreeBSD__
+    exec_var->pyin << "set_font_dir([\"/usr/local/share/fonts/\",\"~/.fonts/\"])" << std::endl;
     // also add 
 #endif
 

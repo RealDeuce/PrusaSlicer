@@ -159,7 +159,7 @@ void KBShortcutsDialog::fill_shortcuts()
             { ctrl + "M", L("Show/Hide 3Dconnexion devices settings dialog") },
 #endif // _WIN32
 #else
-#if defined(__linux__) || defined(__APPLE__)
+#if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__)
             { ctrl + "M", L("Show/Hide 3Dconnexion devices settings dialog") },
 #endif // __linux__
 #endif // ENABLE_CTRL_M_ON_WINDOWS
