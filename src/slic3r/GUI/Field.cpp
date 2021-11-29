@@ -318,11 +318,11 @@ void RichTooltipTimer::Notify() {
                 }
             }
             });
-        this->m_current_rich_tooltip->Bind(wxEVT_KILL_FOCUS, [this](wxFocusEvent& event) {
-            CallAfter([this]() {
-                if (this->m_previous_focus) this->m_previous_focus->SetFocus();
-                });
-            });
+        //this->m_current_rich_tooltip->Bind(wxEVT_KILL_FOCUS, [this](wxFocusEvent& event) {
+        //    CallAfter([this]() {
+        //        if (this->m_previous_focus) this->m_previous_focus->SetFocus();
+        //        });
+        //    });
     }
 }
 
