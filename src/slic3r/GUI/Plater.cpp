@@ -3632,7 +3632,7 @@ void Plater::priv::set_current_panel(wxTitledPanel* panel)
         if (notification_manager != nullptr)
             notification_manager->set_in_preview(current_panel == preview);
 
-        current_panel->SetFocusFromKbd();
+        //current_panel->SetFocusFromKbd();
     }
 }
 
