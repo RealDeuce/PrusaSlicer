@@ -3267,9 +3267,6 @@ void GLCanvas3D::on_mouse(wxMouseEvent& evt)
                 p = p->GetParent();
             auto *top_level_wnd = dynamic_cast<wxTopLevelWindow*>(p);
             if (focus_platter_on_mouse) {
-                if (wxWindow::FindFocus() != this->m_canvas)
-                    // Grab keyboard focus for input in gizmo dialogs.
-                    m_canvas->SetFocus();
                 if (top_level_wnd && top_level_wnd->IsActive())
                     m_canvas->SetFocus();
             }
