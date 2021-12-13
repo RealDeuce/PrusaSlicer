@@ -657,7 +657,7 @@ void UnsavedChangesDialog::build(Preset::Type type, PresetCollection* dependent_
     add_btn(&m_discard_btn, m_continue_btn_id, dependent_presets ? "switch_presets" : "exit", Action::Discard, _L("Discard"), false);
     add_btn(&m_save_btn, m_save_btn_id, "save", Action::Save, _L("Save"));
 
-    ScalableButton* cancel_btn = new ScalableButton(this, wxID_CANCEL, "cross", _L("Cancel"), wxDefaultSize, wxDefaultPosition, wxBORDER_DEFAULT, true, 24);
+    ScalableButton* cancel_btn = new ScalableButton(this, wxID_ANY, "cross", _L("Cancel"), wxDefaultSize, wxDefaultPosition, wxBORDER_DEFAULT, true, 24);
     buttons->Add(cancel_btn, 1, wxLEFT|wxRIGHT, 5);
     cancel_btn->SetFont(btn_font);
     cancel_btn->Bind(wxEVT_BUTTON, [this](wxEvent&) { this->EndModal(wxID_CANCEL); });
