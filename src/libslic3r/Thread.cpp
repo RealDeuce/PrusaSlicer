@@ -10,9 +10,9 @@
 #include <condition_variable>
 #include <mutex>
 #include <tbb/parallel_for.h>
-#include <tbb/tbb_thread.h>
+//#include <tbb/tbb_thread.h>
 #include <tbb/task_arena.h>
-#include <tbb/task_scheduler_init.h>
+#include <tbb/global_control.h>
 
 #include "Thread.hpp"
 
@@ -207,12 +207,12 @@ void name_tbb_thread_pool_threads()
 #endif
 
 	if (nthreads != nthreads_hw) 
-		new tbb::task_scheduler_init(int(nthreads));
+		new tbb::global_control(tbb::global_control::parameter::max_allowed_parallelism, nthreads);
 
 	std::atomic<size_t>		nthreads_running(0);
 	std::condition_variable cv;
 	std::mutex				cv_m;
-	auto					master_thread_id = tbb::this_tbb_thread::get_id();
+	auto					master_thread_id = std::this_thread::get_id();
 	auto					now = std::chrono::system_clock::now();
     tbb::parallel_for(
         tbb::blocked_range<size_t>(0, nthreads, 1),
@@ -228,7 +228,7 @@ void name_tbb_thread_pool_threads()
 				// here can be deadlock with the main that creates me.
 			    cv.wait_until(lk, now + std::chrono::milliseconds(50), [&nthreads_running, nthreads]{return nthreads_running == nthreads;});
         	}
-        	auto thread_id = tbb::this_tbb_thread::get_id();
+        	auto thread_id = std::this_thread::get_id();
 			if (thread_id == master_thread_id) {
 				// The calling thread runs the 0'th task.
 				//assert(range.begin() == 0);
