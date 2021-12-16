@@ -2,7 +2,6 @@
 #define SLA_CONCURRENCY_H
 
 #include <tbb/spin_mutex.h>
-//#include <tbb/mutex.h>
 #include <tbb/parallel_for.h>
 #include <tbb/parallel_reduce.h>
 

@@ -15,8 +15,6 @@
 #include <chrono>
 #include <condition_variable>
 
-//#include <tbb/mutex.h>
-
 namespace Slic3r {
 
 class AppConfig;

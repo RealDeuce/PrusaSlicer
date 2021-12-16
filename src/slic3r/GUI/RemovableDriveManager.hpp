@@ -5,7 +5,6 @@
 #include <string>
 
 #include <boost/thread.hpp>
-//#include <tbb/mutex.h>
 #include <condition_variable>
 
 // Custom wxWidget events

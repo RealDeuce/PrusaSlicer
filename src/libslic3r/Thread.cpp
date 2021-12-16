@@ -10,9 +10,12 @@
 #include <condition_variable>
 #include <mutex>
 #include <tbb/parallel_for.h>
-//#include <tbb/tbb_thread.h>
 #include <tbb/task_arena.h>
+#if (TBB_VERSION_MAJOR >= 2020)
 #include <tbb/global_control.h>
+#else
+#include <tbb/task_scheduler_init.h>
+#endif
 
 #include "Thread.hpp"
 
@@ -207,7 +210,11 @@ void name_tbb_thread_pool_threads()
 #endif
 
 	if (nthreads != nthreads_hw) 
+#if (TBB_VERSION_MAJOR >= 2020)
 		new tbb::global_control(tbb::global_control::parameter::max_allowed_parallelism, nthreads);
+#else
+		new tbb::task_scheduler_init(int(nthreads));
+#endif
 
 	std::atomic<size_t>		nthreads_running(0);
 	std::condition_variable cv;
