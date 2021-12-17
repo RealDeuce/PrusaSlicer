@@ -14,6 +14,7 @@
 #include <vector>
 #include <chrono>
 #include <condition_variable>
+#include <mutex>
 
 namespace Slic3r {
 

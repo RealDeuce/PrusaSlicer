@@ -11,6 +11,7 @@
 #ifndef NOMINMAX
     #define NOMINMAX
 #endif
+#include <atomic>
 
 #include "ObjectID.hpp"
 #include "Model.hpp"

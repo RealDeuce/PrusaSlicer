@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <mutex>
 
 #include <boost/thread.hpp>
 #include <condition_variable>
