@@ -6,12 +6,8 @@
 #include <vector>
 #include <string>
 #include <functional>
-
-// tbb/mutex.h includes Windows, which in turn defines min/max macros. Convince Windows.h to not define these min/max macros.
-#ifndef NOMINMAX
-    #define NOMINMAX
-#endif
 #include <atomic>
+#include <mutex>
 
 #include "ObjectID.hpp"
 #include "Model.hpp"
