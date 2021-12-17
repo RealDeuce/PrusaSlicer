@@ -129,7 +129,7 @@ void disable_multi_threading()
 #else
     static tbb::task_scheduler_init *tbb_init = nullptr;
     if (tbb_init == nullptr)
-        tbb_init = new tbb::task_scheduler_init(1)
+        tbb_init = new tbb::task_scheduler_init(1);
 #endif
 }
 
