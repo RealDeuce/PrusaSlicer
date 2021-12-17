@@ -10,6 +10,8 @@
 
 #include <cmath>
 #include <memory>
+#include <atomic>
+#include <thread>
 #include <boost/log/trivial.hpp>
 
 #include <tbb/parallel_for.h>
