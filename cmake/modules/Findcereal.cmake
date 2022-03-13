@@ -8,7 +8,7 @@ find_package(${CMAKE_FIND_PACKAGE_NAME} ${${CMAKE_FIND_PACKAGE_NAME}_FIND_VERSIO
 if (NOT ${CMAKE_FIND_PACKAGE_NAME}_FOUND)
     # Fall-back solution to find the Cereal serialization library header file
     include(CheckIncludeFileCXX)
-    add_library(cereal INTERFACE)
+    #add_library(cereal INTERFACE)
     target_include_directories(cereal INTERFACE include)
 
     if (_quietly)
