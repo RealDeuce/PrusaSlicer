@@ -210,7 +210,7 @@ void ModelNode::UpdateIcons()
     if (m_icon_name.empty())
         return;
 
-#if defined(__linux__) || defined(__FreeBSD__)
+#if defined(__linux__)
     m_icon.CopyFromBitmap(create_scaled_bitmap(m_icon_name, m_parent_win, 16, !m_toggle));
 #else
     m_icon = create_scaled_bitmap(m_icon_name, m_parent_win, 16, !m_toggle);
@@ -361,7 +361,7 @@ void DiffModel::GetValue(wxVariant& variant, const wxDataViewItem& item, unsigne
     case colToggle:
         variant = node->m_toggle;
         break;
-#if defined(__linux__) || defined(__FreeBSD__)
+#if defined(__linux__)
     case colIconText:
         variant << wxDataViewIconText(node->m_text, node->m_icon);
         break;
@@ -398,7 +398,7 @@ bool DiffModel::SetValue(const wxVariant& variant, const wxDataViewItem& item, u
     case colToggle:
         node->m_toggle = variant.GetBool();
         return true;
-#if defined(__linux___) || defined(__FreeBSD__)
+#if defined(__linux___)
     case colIconText: {
         wxDataViewIconText data;
         data << variant;

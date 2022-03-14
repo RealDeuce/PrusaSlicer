@@ -53,7 +53,7 @@ class ModelNode
 public:
 
     bool        m_toggle {true};
-#if defined(__linux__) || defined(__FreeBSD__)
+#if defined(__linux__)
     wxIcon      m_icon;
     wxIcon      m_old_color_bmp;
     wxIcon      m_new_color_bmp;
